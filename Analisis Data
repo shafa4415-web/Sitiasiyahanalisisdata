@@ -1,0 +1,645 @@
+<!doctype html>
+<html lang="id" class="h-full">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Latihan Soal Matematika</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="/_sdk/element_sdk.js"></script>
+  <script src="/_sdk/data_sdk.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet">
+  <style>
+    body {
+      box-sizing: border-box;
+      font-family: 'Inter', sans-serif;
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+    
+    @keyframes shimmer {
+      0% { background-position: -1000px 0; }
+      100% { background-position: 1000px 0; }
+    }
+    
+    .fade-in {
+      animation: fadeIn 1s ease-out forwards;
+    }
+    
+    .slide-up {
+      animation: slideUp 0.6s ease-out forwards;
+    }
+    
+    .pulse-anim {
+      animation: pulse 2s ease-in-out infinite;
+    }
+    
+    .gradient-primary {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    }
+    
+    .gradient-secondary {
+      background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    }
+    
+    .gradient-success {
+      background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+    }
+    
+    .card-elevated {
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.12), 0 8px 24px rgba(0, 0, 0, 0.08);
+    }
+    
+    .input-modern:focus {
+      outline: none;
+      box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.2);
+      border-color: #667eea;
+    }
+    
+    .timer-warning {
+      animation: pulse 1.5s infinite;
+      color: #ef4444 !important;
+      background: rgba(239, 68, 68, 0.1) !important;
+    }
+    
+    .question-container {
+      background: linear-gradient(145deg, #ffffff 0%, #f8f9ff 100%);
+    }
+    
+    .shimmer-bg {
+      background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+      background-size: 1000px 100%;
+      animation: shimmer 2s infinite;
+    }
+    
+    .btn-primary {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      transition: all 0.3s ease;
+    }
+    
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+    }
+    
+    .btn-primary:active {
+      transform: translateY(0);
+    }
+    
+    .progress-dot {
+      transition: all 0.3s ease;
+    }
+    
+    .progress-dot.active {
+      transform: scale(1.2);
+    }
+  </style>
+  <style>@view-transition { navigation: auto; }</style>
+ </head>
+ <body class="h-full bg-gradient-to-br from-slate-50 via-purple-50 to-slate-50">
+  <div id="app" class="h-full overflow-auto"><!-- Login Screen -->
+   <div id="login-screen" class="h-full flex items-center justify-center p-4">
+    <div class="w-full max-w-md">
+     <div class="bg-white rounded-3xl card-elevated p-8 md:p-10 slide-up"><!-- Logo -->
+      <div class="text-center mb-8">
+       <div class="w-24 h-24 mx-auto gradient-primary rounded-3xl flex items-center justify-center mb-6 pulse-anim">
+        <svg class="w-12 h-12 text-white" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+        </svg>
+       </div>
+       <h1 id="login-practice-title" class="text-3xl font-bold text-slate-800 mb-2">Latihan Soal</h1>
+       <p id="login-academic-year" class="text-slate-500 text-sm mb-1">Tahun Ajaran 2025-2026</p>
+       <p id="login-subject-title" class="text-purple-600 font-semibold text-lg">Matematika</p>
+      </div><!-- Login Form -->
+      <form id="login-form" class="space-y-5">
+       <div><label for="username" class="block text-sm font-semibold text-slate-700 mb-2">Nama Siswa</label> <input type="text" id="username" placeholder="Masukkan nama lengkap Anda" class="w-full px-4 py-3.5 rounded-xl border-2 border-slate-200 input-modern transition-all duration-200 text-slate-800 placeholder-slate-400 font-medium" required>
+       </div>
+       <div><label for="password" class="block text-sm font-semibold text-slate-700 mb-2">Password</label> <input type="password" id="password" placeholder="Masukkan password" class="w-full px-4 py-3.5 rounded-xl border-2 border-slate-200 input-modern transition-all duration-200 text-slate-800 placeholder-slate-400 font-medium" required>
+       </div>
+       <div id="login-error" class="hidden text-red-600 text-sm text-center bg-red-50 p-3 rounded-xl font-medium"></div><button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 px-6 rounded-xl transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98] shadow-lg hover:shadow-xl"> Login </button>
+      </form>
+      <p class="text-center text-slate-400 text-xs mt-6">💡 Password default: <span class="font-semibold text-slate-500">1234</span></p>
+     </div>
+    </div>
+   </div><!-- Instructions Screen -->
+   <div id="instructions-screen" class="hidden h-full overflow-auto">
+    <div class="min-h-full flex items-center justify-center p-4 py-10">
+     <div class="w-full max-w-2xl">
+      <div class="bg-white rounded-3xl card-elevated p-6 md:p-10 slide-up">
+       <div class="text-center mb-8">
+        <div class="w-20 h-20 mx-auto bg-gradient-to-br from-amber-400 to-orange-500 rounded-2xl flex items-center justify-center mb-6 pulse-anim">
+         <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+         </svg>
+        </div>
+        <h2 class="text-3xl font-bold text-slate-800 mb-2">Petunjuk Latihan</h2>
+        <p class="text-slate-500">Baca dengan seksama sebelum memulai</p>
+       </div>
+       <div class="space-y-4 mb-8">
+        <div class="flex items-start gap-4 p-5 bg-gradient-to-r from-purple-50 to-blue-50 rounded-2xl border border-purple-100">
+         <div class="w-10 h-10 bg-purple-600 rounded-xl flex items-center justify-center flex-shrink-0"><span class="text-white font-bold">⏱️</span>
+         </div>
+         <div>
+          <h3 class="font-bold text-slate-800 mb-1">Waktu Pengerjaan</h3>
+          <p class="text-slate-600 text-sm leading-relaxed">Waktu latihan adalah <strong class="text-purple-600">30 menit</strong>. Timer akan berjalan otomatis dan muncul di sudut kanan atas.</p>
+         </div>
+        </div>
+        <div class="flex items-start gap-4 p-5 bg-gradient-to-r from-blue-50 to-cyan-50 rounded-2xl border border-blue-100">
+         <div class="w-10 h-10 bg-blue-600 rounded-xl flex items-center justify-center flex-shrink-0"><span class="text-white font-bold">📝</span>
+         </div>
+         <div>
+          <h3 class="font-bold text-slate-800 mb-1">Jumlah Soal</h3>
+          <p class="text-slate-600 text-sm leading-relaxed">Terdapat <strong class="text-blue-600">5 soal esai kontekstual</strong> yang harus dijawab dengan lengkap dan jelas.</p>
+         </div>
+        </div>
+        <div class="flex items-start gap-4 p-5 bg-gradient-to-r from-green-50 to-emerald-50 rounded-2xl border border-green-100">
+         <div class="w-10 h-10 bg-green-600 rounded-xl flex items-center justify-center flex-shrink-0"><span class="text-white font-bold">🔀</span>
+         </div>
+         <div>
+          <h3 class="font-bold text-slate-800 mb-1">Soal Acak</h3>
+          <p class="text-slate-600 text-sm leading-relaxed">Urutan soal akan <strong class="text-green-600">diacak secara otomatis</strong> untuk setiap siswa yang mengikuti latihan.</p>
+         </div>
+        </div>
+        <div class="flex items-start gap-4 p-5 bg-gradient-to-r from-indigo-50 to-purple-50 rounded-2xl border border-indigo-100">
+         <div class="w-10 h-10 bg-indigo-600 rounded-xl flex items-center justify-center flex-shrink-0"><span class="text-white font-bold">🧭</span>
+         </div>
+         <div>
+          <h3 class="font-bold text-slate-800 mb-1">Navigasi</h3>
+          <p class="text-slate-600 text-sm leading-relaxed">Gunakan tombol <strong class="text-indigo-600">"Sebelumnya"</strong> dan <strong class="text-indigo-600">"Selanjutnya"</strong> untuk berpindah antar soal.</p>
+         </div>
+        </div>
+        <div class="flex items-start gap-4 p-5 bg-gradient-to-r from-amber-50 to-yellow-50 rounded-2xl border-2 border-amber-200">
+         <div class="w-10 h-10 bg-amber-500 rounded-xl flex items-center justify-center flex-shrink-0">
+          <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+          </svg>
+         </div>
+         <div>
+          <h3 class="font-bold text-amber-800 mb-1">Penting!</h3>
+          <p class="text-amber-700 text-sm leading-relaxed">Setelah selesai, klik tombol <strong>"Selesaikan Ujian"</strong>. Hasil akan tersimpan otomatis ke sistem.</p>
+         </div>
+        </div>
+       </div><button id="start-practice-btn" class="w-full btn-primary text-white font-bold py-5 px-6 rounded-xl transition-all duration-300 flex items-center justify-center gap-3 shadow-xl text-lg">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" /> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg> Mulai Latihan Sekarang </button>
+      </div>
+     </div>
+    </div>
+   </div><!-- Practice Screen -->
+   <div id="practice-screen" class="hidden h-full flex flex-col"><!-- Header -->
+    <header class="gradient-primary text-white px-4 py-4 md:px-6 md:py-5 shadow-xl">
+     <div class="max-w-5xl mx-auto">
+      <div class="flex items-center justify-between gap-4">
+       <div class="flex-1 min-w-0">
+        <h1 id="practice-header" class="text-xs md:text-sm lg:text-base font-semibold leading-tight fade-in">Latihan Soal Matematika: Materi Hubungan antara dua variabel numerik (positif, negatif, atau tidak ada hubungan) secara logis dan akurat.</h1>
+       </div>
+       <div id="timer" class="flex-shrink-0 bg-white/20 backdrop-blur-lg px-4 py-2.5 md:px-5 md:py-3 rounded-2xl flex items-center gap-2 shadow-lg">
+        <svg class="w-5 h-5 md:w-6 md:h-6 text-white" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg><span id="timer-display" class="font-mono font-bold text-base md:text-xl text-white">30:00</span>
+       </div>
+      </div>
+     </div>
+    </header><!-- Question Area -->
+    <div class="flex-1 overflow-auto p-4 md:p-6 lg:p-8">
+     <div class="max-w-4xl mx-auto"><!-- Progress Indicator -->
+      <div class="mb-6 flex items-center justify-between bg-white rounded-2xl p-4 shadow-lg">
+       <div>
+        <p id="question-progress" class="text-slate-700 font-bold text-base">Soal 1 dari 5</p>
+        <p class="text-slate-500 text-xs mt-0.5">Satu halaman satu soal</p>
+       </div>
+       <div class="flex gap-2"><span id="dot-1" class="progress-dot w-3 h-3 rounded-full bg-purple-600 active"></span> <span id="dot-2" class="progress-dot w-3 h-3 rounded-full bg-slate-300"></span> <span id="dot-3" class="progress-dot w-3 h-3 rounded-full bg-slate-300"></span> <span id="dot-4" class="progress-dot w-3 h-3 rounded-full bg-slate-300"></span> <span id="dot-5" class="progress-dot w-3 h-3 rounded-full bg-slate-300"></span>
+       </div>
+      </div><!-- Question Card -->
+      <div class="question-container rounded-3xl card-elevated p-6 md:p-8 lg:p-10 slide-up">
+       <div class="flex items-start gap-5 mb-8">
+        <div id="question-number-badge" class="w-14 h-14 md:w-16 md:h-16 gradient-primary rounded-2xl flex items-center justify-center flex-shrink-0 shadow-lg"><span class="text-white font-bold text-2xl md:text-3xl">1</span>
+        </div>
+        <div class="flex-1">
+         <div class="inline-block px-4 py-1.5 bg-purple-100 text-purple-700 rounded-full text-xs font-bold mb-3">
+          SOAL ESAI KONTEKSTUAL
+         </div>
+         <p id="question-text" class="text-slate-800 text-base md:text-lg leading-relaxed font-medium"></p>
+        </div>
+       </div>
+       <div class="mt-8"><label for="answer-input" class="block text-sm font-bold text-slate-700 mb-3 flex items-center gap-2">
+         <svg class="w-5 h-5 text-purple-600" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+         </svg> Jawaban Anda: </label> <textarea id="answer-input" rows="8" placeholder="Tuliskan jawaban lengkap dan jelas di sini. Jelaskan pemahaman Anda dengan detail..." class="w-full px-5 py-4 rounded-2xl border-2 border-slate-200 input-modern transition-all duration-200 text-slate-800 placeholder-slate-400 resize-none text-base leading-relaxed"></textarea>
+        <p class="text-slate-400 text-xs mt-2 flex items-center gap-1">
+         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+         </svg> Jawaban Anda otomatis tersimpan</p>
+       </div>
+      </div><!-- Navigation Buttons -->
+      <div class="mt-8 flex flex-col sm:flex-row gap-4"><button id="prev-btn" class="flex-1 bg-slate-200 hover:bg-slate-300 text-slate-700 font-bold py-4 px-6 rounded-2xl transition-all duration-300 flex items-center justify-center gap-3 disabled:opacity-50 disabled:cursor-not-allowed shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+        </svg> Sebelumnya </button> <button id="next-btn" class="flex-1 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-bold py-4 px-6 rounded-2xl transition-all duration-300 flex items-center justify-center gap-3 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"> Selanjutnya 
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+        </svg></button> <button id="finish-btn" class="hidden flex-1 bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white font-bold py-4 px-6 rounded-2xl transition-all duration-300 items-center justify-center gap-3 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg> Selesaikan Ujian </button>
+      </div>
+     </div>
+    </div>
+   </div><!-- Confirmation Modal -->
+   <div id="confirm-modal" class="hidden fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4 z-50">
+    <div class="bg-white rounded-3xl card-elevated p-8 max-w-md w-full slide-up">
+     <div class="text-center">
+      <div class="w-20 h-20 mx-auto gradient-secondary rounded-full flex items-center justify-center mb-6">
+       <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+       </svg>
+      </div>
+      <h3 class="text-2xl font-bold text-slate-800 mb-3">Selesaikan Latihan?</h3>
+      <p class="text-slate-600 mb-8 leading-relaxed">Apakah Anda yakin ingin mengumpulkan jawaban? Pastikan semua soal sudah dijawab dengan lengkap.</p>
+      <div class="flex gap-3"><button id="cancel-submit" class="flex-1 bg-slate-200 hover:bg-slate-300 text-slate-700 font-bold py-4 px-6 rounded-xl transition-all duration-300"> Cek Lagi </button> <button id="confirm-submit" class="flex-1 gradient-success text-white font-bold py-4 px-6 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl"> Ya, Kumpulkan </button>
+      </div>
+     </div>
+    </div>
+   </div><!-- Result Screen -->
+   <div id="result-screen" class="hidden h-full overflow-auto">
+    <div class="min-h-full flex items-center justify-center p-4 py-10">
+     <div class="w-full max-w-2xl">
+      <div class="bg-white rounded-3xl card-elevated p-8 md:p-12 slide-up text-center">
+       <div class="w-28 h-28 mx-auto gradient-success rounded-full flex items-center justify-center mb-8 pulse-anim shadow-2xl">
+        <svg class="w-14 h-14 text-white" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+       </div>
+       <h2 class="text-4xl font-bold text-slate-800 mb-3">Latihan Selesai! 🎉</h2>
+       <p id="result-student-name" class="text-slate-500 text-lg mb-10 font-medium">-</p>
+       <div class="bg-gradient-to-br from-purple-50 via-blue-50 to-cyan-50 rounded-3xl p-10 mb-8 border-2 border-purple-100">
+        <p class="text-slate-600 text-sm mb-3 font-semibold uppercase tracking-wide">Nilai Anda</p>
+        <p id="result-score" class="text-7xl md:text-8xl font-black bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent mb-3">0</p>
+        <p class="text-slate-500 font-medium">dari 100</p>
+       </div>
+       <div class="grid grid-cols-2 gap-5 mb-8">
+        <div class="bg-gradient-to-br from-purple-50 to-purple-100 rounded-2xl p-6 border border-purple-200">
+         <p class="text-purple-600 text-xs font-bold mb-2 uppercase tracking-wide">Soal Dijawab</p>
+         <p id="result-answered" class="text-3xl font-black text-purple-700">0/5</p>
+        </div>
+        <div class="bg-gradient-to-br from-blue-50 to-blue-100 rounded-2xl p-6 border border-blue-200">
+         <p class="text-blue-600 text-xs font-bold mb-2 uppercase tracking-wide">Waktu Pengerjaan</p>
+         <p id="result-time" class="text-3xl font-black text-blue-700">00:00</p>
+        </div>
+       </div>
+       <div class="bg-green-50 border-2 border-green-300 rounded-2xl p-5 mb-8">
+        <div class="flex items-center justify-center gap-3 text-green-700">
+         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+         </svg><span class="font-bold">Hasil latihan telah tersimpan ke Canva Sheet</span>
+        </div>
+       </div><button id="back-to-login" class="w-full bg-gradient-to-r from-slate-600 to-slate-700 hover:from-slate-700 hover:to-slate-800 text-white font-bold py-5 px-6 rounded-2xl transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"> Kembali ke Halaman Login </button>
+      </div>
+     </div>
+    </div>
+   </div>
+  </div>
+  <script>
+    // Questions - Soal Kontekstual Matematika
+    const allQuestions = [
+      {
+        id: 1,
+        text: "Seorang petani mencatat bahwa ketika ia meningkatkan jumlah penyiraman tanaman jagung dari 2 kali sehari menjadi 5 kali sehari, tinggi tanaman meningkat dari 50 cm menjadi 95 cm dalam seminggu. Namun ketika penyiraman dikurangi menjadi 1 kali sehari, tinggi tanaman hanya bertambah 15 cm. Analisislah hubungan antara frekuensi penyiraman dengan pertumbuhan tinggi tanaman! Jelaskan jenis hubungan yang terjadi dan berikan alasan mengapa hubungan tersebut terjadi secara logis dan ilmiah.",
+        keywords: ["positif", "berbanding lurus", "searah", "meningkat", "naik", "air", "fotosintesis"]
+      },
+      {
+        id: 2,
+        text: "Sebuah toko buku online mencatat data penjualan. Ketika mereka memberikan diskon 10%, jumlah buku terjual adalah 80 buku. Saat diskon dinaikkan menjadi 30%, penjualan meningkat menjadi 240 buku. Namun ketika diskon dikurangi menjadi 5%, hanya 40 buku yang terjual. Identifikasi dan jelaskan jenis hubungan antara persentase diskon dengan jumlah buku yang terjual! Berikan penjelasan logis mengapa konsumen berperilaku demikian dan bagaimana hubungan kedua variabel ini dapat diprediksi.",
+        keywords: ["positif", "berbanding lurus", "searah", "meningkat", "bertambah", "minat", "harga"]
+      },
+      {
+        id: 3,
+        text: "Dalam sebuah penelitian, diketahui bahwa ketika suhu ruangan AC dinaikkan dari 18°C menjadi 26°C, konsumsi listrik menurun dari 2.5 kWh menjadi 1.2 kWh per jam. Sebaliknya, ketika suhu diturunkan menjadi 16°C, konsumsi listrik meningkat menjadi 3.0 kWh per jam. Analisislah hubungan antara suhu AC dengan konsumsi listrik! Tentukan jenis hubungannya (positif, negatif, atau tidak ada hubungan) dan jelaskan secara teknis mengapa pola hubungan tersebut terjadi.",
+        keywords: ["negatif", "berbanding terbalik", "berlawanan", "menurun", "turun", "energi", "kompresor"]
+      },
+      {
+        id: 4,
+        text: "Seorang atlet mencatat bahwa ketika ia berlatih lari 2 jam per hari, waktunya untuk menempuh 5 km adalah 25 menit. Ketika durasi latihan ditingkatkan menjadi 4 jam per hari, waktunya untuk 5 km menjadi 20 menit. Namun ketika latihan dikurangi menjadi 1 jam per hari, waktunya meningkat menjadi 30 menit. Jelaskan hubungan antara durasi latihan per hari dengan waktu tempuh lari 5 km! Identifikasi jenis hubungannya dan berikan alasan logis terkait kondisi fisik dan stamina atlet.",
+        keywords: ["negatif", "berbanding terbalik", "berlawanan", "menurun", "stamina", "kebugaran", "kecepatan"]
+      },
+      {
+        id: 5,
+        text: "Sebuah pabrik roti mencatat data produksi. Ketika jumlah karyawan ditambah dari 5 orang menjadi 12 orang, produksi roti meningkat dari 100 roti per hari menjadi 240 roti per hari. Namun ketika karyawan dikurangi menjadi 3 orang, produksi turun menjadi 60 roti per hari. Di sisi lain, ketika warna cat dinding pabrik diubah dari putih menjadi biru, atau dari biru menjadi hijau, jumlah produksi tetap stabil di angka yang sama. Bandingkan dan jelaskan: (1) Hubungan antara jumlah karyawan dengan produksi roti, dan (2) Hubungan antara warna cat dinding dengan produksi roti. Tentukan jenis masing-masing hubungan dan berikan analisis logis!",
+        keywords: ["positif", "tidak ada hubungan", "tidak berpengaruh", "konstan", "tenaga kerja", "produktivitas"]
+      }
+    ];
+
+    // App State
+    let currentStudent = '';
+    let currentQuestionIndex = 0;
+    let shuffledQuestions = [];
+    let answers = {};
+    let timerInterval = null;
+    let timeRemaining = 30 * 60;
+    let practiceStartTime = null;
+    let isSubmitting = false;
+
+    // Default Config
+    const defaultConfig = {
+      practice_title: 'Latihan Soal',
+      academic_year: 'Tahun Ajaran 2025-2026',
+      subject_title: 'Matematika',
+      material_topic: 'Hubungan antara dua variabel numerik (positif, negatif, atau tidak ada hubungan) secara logis dan akurat'
+    };
+
+    // Shuffle Function
+    function shuffleArray(array) {
+      const shuffled = [...array];
+      for (let i = shuffled.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+      }
+      return shuffled;
+    }
+
+    // Format Time
+    function formatTime(seconds) {
+      const mins = Math.floor(seconds / 60);
+      const secs = seconds % 60;
+      return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+    }
+
+    // Update Timer
+    function updateTimer() {
+      const timerDisplay = document.getElementById('timer-display');
+      const timer = document.getElementById('timer');
+      timerDisplay.textContent = formatTime(timeRemaining);
+      
+      if (timeRemaining <= 300) {
+        timer.classList.add('timer-warning');
+      }
+      
+      if (timeRemaining <= 0) {
+        clearInterval(timerInterval);
+        submitPractice();
+      }
+      
+      timeRemaining--;
+    }
+
+    // Show Screen
+    function showScreen(screenId) {
+      document.querySelectorAll('#app > div').forEach(div => {
+        if (div.id !== 'confirm-modal') {
+          div.classList.add('hidden');
+        }
+      });
+      document.getElementById(screenId).classList.remove('hidden');
+    }
+
+    // Update Question Display
+    function updateQuestionDisplay() {
+      const question = shuffledQuestions[currentQuestionIndex];
+      
+      document.getElementById('question-progress').textContent = `Soal ${currentQuestionIndex + 1} dari ${shuffledQuestions.length}`;
+      document.getElementById('question-number-badge').innerHTML = `<span class="text-white font-bold text-2xl md:text-3xl">${currentQuestionIndex + 1}</span>`;
+      document.getElementById('question-text').textContent = question.text;
+      document.getElementById('answer-input').value = answers[question.id] || '';
+      
+      // Update progress dots
+      for (let i = 1; i <= 5; i++) {
+        const dot = document.getElementById(`dot-${i}`);
+        if (i <= currentQuestionIndex + 1) {
+          dot.classList.remove('bg-slate-300');
+          dot.classList.add('bg-purple-600', 'active');
+        } else {
+          dot.classList.remove('bg-purple-600', 'active');
+          dot.classList.add('bg-slate-300');
+        }
+      }
+      
+      // Update buttons
+      const prevBtn = document.getElementById('prev-btn');
+      const nextBtn = document.getElementById('next-btn');
+      const finishBtn = document.getElementById('finish-btn');
+      
+      prevBtn.disabled = currentQuestionIndex === 0;
+      
+      if (currentQuestionIndex === shuffledQuestions.length - 1) {
+        nextBtn.classList.add('hidden');
+        finishBtn.classList.remove('hidden');
+        finishBtn.classList.add('flex');
+      } else {
+        nextBtn.classList.remove('hidden');
+        finishBtn.classList.add('hidden');
+        finishBtn.classList.remove('flex');
+      }
+    }
+
+    // Save Current Answer
+    function saveCurrentAnswer() {
+      const question = shuffledQuestions[currentQuestionIndex];
+      const answer = document.getElementById('answer-input').value.trim();
+      if (answer) {
+        answers[question.id] = answer;
+      }
+    }
+
+    // Calculate Score
+    function calculateScore() {
+      let correctCount = 0;
+      
+      shuffledQuestions.forEach(question => {
+        const answer = (answers[question.id] || '').toLowerCase();
+        const hasKeyword = question.keywords.some(keyword => answer.includes(keyword.toLowerCase()));
+        const hasExplanation = answer.length > 80;
+        
+        if (hasKeyword && hasExplanation) {
+          correctCount++;
+        }
+      });
+      
+      return {
+        score: Math.round((correctCount / shuffledQuestions.length) * 100),
+        correct: correctCount,
+        total: shuffledQuestions.length
+      };
+    }
+
+    // Submit Practice
+    async function submitPractice() {
+      if (isSubmitting) return;
+      isSubmitting = true;
+      
+      saveCurrentAnswer();
+      clearInterval(timerInterval);
+      
+      const result = calculateScore();
+      const practiceDuration = 30 * 60 - timeRemaining;
+      const answeredCount = Object.keys(answers).filter(k => answers[k] && answers[k].trim()).length;
+      
+      // Show result
+      document.getElementById('result-student-name').textContent = currentStudent;
+      document.getElementById('result-score').textContent = result.score;
+      document.getElementById('result-answered').textContent = `${answeredCount}/${result.total}`;
+      document.getElementById('result-time').textContent = formatTime(practiceDuration);
+      
+      // Hide modal and show result
+      document.getElementById('confirm-modal').classList.add('hidden');
+      showScreen('result-screen');
+      
+      // Save to Data SDK
+      if (window.dataSdk) {
+        const practiceData = {
+          student_name: currentStudent,
+          score: result.score,
+          total_questions: result.total,
+          correct_answers: result.correct,
+          practice_date: new Date().toISOString(),
+          duration_seconds: practiceDuration,
+          answers: JSON.stringify(answers)
+        };
+        
+        const saveResult = await window.dataSdk.create(practiceData);
+        if (!saveResult.isOk) {
+          console.error('Failed to save practice result');
+        }
+      }
+    }
+
+    // Initialize App
+    function initApp() {
+      // Login form
+      document.getElementById('login-form').addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const username = document.getElementById('username').value.trim();
+        const password = document.getElementById('password').value;
+        const errorDiv = document.getElementById('login-error');
+        
+        if (!username) {
+          errorDiv.textContent = 'Silakan masukkan nama Anda';
+          errorDiv.classList.remove('hidden');
+          return;
+        }
+        
+        if (password !== '1234') {
+          errorDiv.textContent = 'Password salah. Gunakan password: 1234';
+          errorDiv.classList.remove('hidden');
+          return;
+        }
+        
+        currentStudent = username;
+        errorDiv.classList.add('hidden');
+        showScreen('instructions-screen');
+      });
+      
+      // Start practice
+      document.getElementById('start-practice-btn').addEventListener('click', function() {
+        shuffledQuestions = shuffleArray(allQuestions);
+        answers = {};
+        currentQuestionIndex = 0;
+        timeRemaining = 30 * 60;
+        practiceStartTime = Date.now();
+        isSubmitting = false;
+        
+        showScreen('practice-screen');
+        updateQuestionDisplay();
+        
+        timerInterval = setInterval(updateTimer, 1000);
+        updateTimer();
+      });
+      
+      // Previous button
+      document.getElementById('prev-btn').addEventListener('click', function() {
+        if (currentQuestionIndex > 0) {
+          saveCurrentAnswer();
+          currentQuestionIndex--;
+          updateQuestionDisplay();
+        }
+      });
+      
+      // Next button
+      document.getElementById('next-btn').addEventListener('click', function() {
+        if (currentQuestionIndex < shuffledQuestions.length - 1) {
+          saveCurrentAnswer();
+          currentQuestionIndex++;
+          updateQuestionDisplay();
+        }
+      });
+      
+      // Finish button
+      document.getElementById('finish-btn').addEventListener('click', function() {
+        saveCurrentAnswer();
+        document.getElementById('confirm-modal').classList.remove('hidden');
+      });
+      
+      // Cancel submit
+      document.getElementById('cancel-submit').addEventListener('click', function() {
+        document.getElementById('confirm-modal').classList.add('hidden');
+      });
+      
+      // Confirm submit
+      document.getElementById('confirm-submit').addEventListener('click', function() {
+        submitPractice();
+      });
+      
+      // Back to login
+      document.getElementById('back-to-login').addEventListener('click', function() {
+        document.getElementById('username').value = '';
+        document.getElementById('password').value = '';
+        currentStudent = '';
+        showScreen('login-screen');
+      });
+    }
+
+    // Config change handler
+    async function onConfigChange(config) {
+      const title = config.practice_title || defaultConfig.practice_title;
+      const year = config.academic_year || defaultConfig.academic_year;
+      const subject = config.subject_title || defaultConfig.subject_title;
+      const material = config.material_topic || defaultConfig.material_topic;
+      
+      document.getElementById('login-practice-title').textContent = title;
+      document.getElementById('login-academic-year').textContent = year;
+      document.getElementById('login-subject-title').textContent = subject;
+      document.getElementById('practice-header').textContent = `Latihan Soal ${subject}: Materi ${material}`;
+    }
+
+    // Data handler
+    const dataHandler = {
+      onDataChanged(data) {
+        // Data stored for teacher review
+      }
+    };
+
+    // Initialize SDKs
+    async function initSDKs() {
+      if (window.elementSdk) {
+        window.elementSdk.init({
+          defaultConfig,
+          onConfigChange,
+          mapToCapabilities: (config) => ({
+            recolorables: [],
+            borderables: [],
+            fontEditable: undefined,
+            fontSizeable: undefined
+          }),
+          mapToEditPanelValues: (config) => new Map([
+            ['practice_title', config.practice_title || defaultConfig.practice_title],
+            ['academic_year', config.academic_year || defaultConfig.academic_year],
+            ['subject_title', config.subject_title || defaultConfig.subject_title],
+            ['material_topic', config.material_topic || defaultConfig.material_topic]
+          ])
+        });
+      }
+      
+      if (window.dataSdk) {
+        const initResult = await window.dataSdk.init(dataHandler);
+        if (!initResult.isOk) {
+          console.error('Failed to initialize Data SDK');
+        }
+      }
+      
+      initApp();
+    }
+
+    initSDKs();
+  </script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9bce050224b03541',t:'MTc2ODIzNTIyOC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
